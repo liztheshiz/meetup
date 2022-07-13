@@ -1,0 +1,11 @@
+{
+  "name": "auth-server",
+  "version": "1.0.0",
+  "description": "Serverless authentication server to provide an authorization token for Google Calendar API access",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "liztheshiz",
+  "license": "ISC"
+}
