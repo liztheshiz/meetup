@@ -17,6 +17,7 @@ config.json
 
 # testing
 /coverage
+/static-test-site
 
 # production
 /build
