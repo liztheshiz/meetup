@@ -93,7 +93,8 @@ module.exports.getCalendarEvents = async (event) => {
         redirect_uris[0]
     );
 
-    const access_token = decodeURIComponent(`${event.getParameters.access_token}`);
+    const access_token = decodeURIComponent(`${event.pathParameters.access_token}`);
+
     oAuth2Client.setCredentials({ access_token });
 
     return new Promise((resolve, reject) => {
@@ -113,7 +114,7 @@ module.exports.getCalendarEvents = async (event) => {
                 }
             }
         );
-    }).then(() => {
+    }).then((results) => {
         return {
             statusCode: 200,
             headers: {
