@@ -7,6 +7,7 @@ import NumberOfEvents from './NumberOfEvents';
 import { extractLocations, getEvents } from './api';
 
 import './App.css';
+import './nprogress.css';
 
 class App extends React.Component {
     updateEvents = (location) => {
