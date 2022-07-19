@@ -21,7 +21,7 @@ class Event extends Component {
                 <h2 className="event-title">{event.summary}</h2>
                 <div className="event-info">{event.start.dateTime} {event.start.timeZone} {event.location}</div>
                 {show && <div className="event-details">{event.description}</div>}
-                <button className="details-button" onClick={this.toggleDetails}></button>
+                <button className="details-button" onClick={this.toggleDetails}>View details</button>
             </div>
         );
     }
