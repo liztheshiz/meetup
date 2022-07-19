@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class NumberOfEvents extends Component {
     handleInputChanged = (event) => {
+        this.props.updateEvents(undefined, event.target.value);
         this.setState({
             renderNumber: event.target.value
         });

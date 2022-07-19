@@ -31,6 +31,11 @@ describe('<App /> component', () => {
 
 // Integration tests
 describe('<App /> integration', () => {
+    /*let AppWrapper;
+    beforeEach(() => {
+        AppWrapper = mount(<App />);
+    })*/
+
     test('App passes "events" state as a prop to EventList', () => {
         const AppWrapper = mount(<App />);
         const AppEventsState = AppWrapper.state('events');
@@ -68,6 +73,24 @@ describe('<App /> integration', () => {
         await suggestionItems.at(suggestionItems.length - 1).simulate('click');
         const allEvents = await getEvents();
         expect(AppWrapper.state('events')).toEqual(allEvents);
+        AppWrapper.unmount();
+    });
+
+    test('App passes "numberOfEvents" state as a prop to NumberOfEvents', () => {
+        const AppWrapper = mount(<App />);
+        const AppNumberState = AppWrapper.state('numberOfEvents');
+        expect(AppNumberState).not.toEqual(undefined);
+        expect(AppWrapper.find(NumberOfEvents).props().numberOfEvents).toEqual(AppNumberState);
+        AppWrapper.unmount();
+    });
+
+    test('get list of events matching the number of events inputted by the user', async () => {
+        const AppWrapper = mount(<App />);
+        const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+        const number = Math.floor(Math.random() * (32));
+        const eventObject = { target: { value: number } };
+        await NumberOfEventsWrapper.find('.render-number').simulate('change', eventObject);
+        expect(AppWrapper.state('numberOfEvents')).toEqual(number);
         AppWrapper.unmount();
     });
 });

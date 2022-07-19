@@ -10,14 +10,25 @@ import './App.css';
 import './nprogress.css';
 
 class App extends React.Component {
-    updateEvents = (location) => {
+    updateEvents = (location, eventCount) => {
         getEvents().then((events) => {
-            const locationEvents = (location === 'all') ?
-                events :
-                events.filter((event) => event.location === location);
+            const locationEvents = (location === 'all') ? events
+                : (location) ? events.filter((event) => event.location === location)
+                    : this.state.events;
+
+            if (eventCount) {
+                this.setState({
+                    numberOfEvents: eventCount
+                });
+            }
+
+            // Truncate events array to length specified in param, or already in state if not given
+            if (eventCount < this.state.numberOfEvents) { locationEvents.length = this.state.numberOfEvents; }
+
             this.setState({
                 events: locationEvents
             });
+
         });
     }
 
@@ -25,17 +36,18 @@ class App extends React.Component {
         super();
         this.state = {
             events: [],
-            locations: []
+            locations: [],
+            numberOfEvents: 32
         }
     }
 
     render() {
-        const { events, locations } = this.state;
+        const { events, locations, numberOfEvents } = this.state;
 
         return (
             <div className="App">
                 <CitySearch updateEvents={this.updateEvents} locations={locations} />
-                <NumberOfEvents />
+                <NumberOfEvents numberOfEvents={numberOfEvents} updateEvents={this.updateEvents} />
                 <EventList events={events} />
             </div>
         );
