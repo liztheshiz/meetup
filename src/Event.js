@@ -17,8 +17,8 @@ class Event extends Component {
         const { show } = this.state;
 
         return (
-            <div>
-                <h2 className="event-title">{event.summary}</h2>
+            <div className="event">
+                <h3 className="event-title">{event.summary}</h3>
                 <div className="event-info">{event.start.dateTime} {event.start.timeZone} {event.location}</div>
                 {show && <div className="event-details">{event.description}</div>}
                 <button className="details-button" onClick={this.toggleDetails}>View details</button>

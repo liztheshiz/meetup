@@ -20,7 +20,8 @@ class NumberOfEvents extends Component {
 
         return (
             <div className="number-of-events">
-                <input type="text" className="render-number" value={renderNumber} onChange={this.handleInputChanged}></input>
+                <p className="input-label">Number of Events:</p>
+                <input id="render-number" type="number" className="render-number" value={renderNumber} onChange={this.handleInputChanged}></input>
             </div>
         );
     }

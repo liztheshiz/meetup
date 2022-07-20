@@ -41,12 +41,20 @@ class App extends React.Component {
 
         return (
             <div className="App">
-                <CitySearch updateEvents={this.updateEvents} locations={locations} />
-                <NumberOfEvents numberOfEvents={numberOfEvents} updateEvents={this.updateEvents} />
-                <EventList events={events} />
+                <div className="content-container">
+                    <h1 className="app-title">Welcome to Meetup</h1>
+                    <h2 className="app-subtitle">Enter location below: </h2>
+                    <CitySearch updateEvents={this.updateEvents} locations={locations} />
+                    <NumberOfEvents numberOfEvents={numberOfEvents} updateEvents={this.updateEvents} />
+                    <EventList events={events} />
+                </div>
             </div>
         );
     }
+
+    /* for crediting background image:
+    <a href="https://www.freepik.com/photos/desk-top-view">Desk top view photo created by freepik - www.freepik.com</a>
+    */
 
     componentDidMount() {
         this.mounted = true;
