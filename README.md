@@ -38,9 +38,9 @@ Given that an event's details are hidden, when the user clicks on that event, th
 Given that an event's details are shown, when the user clicks on that event, then the details should be hidden.
 
 #### Feature 3
-Given that the user hasn't specified how many events should be shown on screen, when the user uses the app, then 32 events should be shown on screen.
+Given that the app has not yet been opened, when the user opens the app, then 32 events should be shown on screen.
 
-Given that the user wants to see only 10 events on screen, when the user enters that number, then 10 events should be shown on screen.
+Given that the main page is open, when the user enters a number (e.g., 10), then that number of events (i.e., 10) should be shown on screen.
 
 #### Feature 4
 Given that there is no internet connection, when the user opens the app/continues to use it, then cached data from last usage should still be available and interaction with that data should be seamless.
