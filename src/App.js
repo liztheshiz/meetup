@@ -42,8 +42,10 @@ class App extends React.Component {
         return (
             <div className="App">
                 <div className="content-container">
-                    <h1 className="app-title">Welcome to Meetup</h1>
-                    <h2 className="app-subtitle">Enter location below: </h2>
+                    <div className="app-header">
+                        <h1 className="app-title">Welcome to Meetup</h1>
+                        <h2 className="app-subtitle">Enter location below: </h2>
+                    </div>
                     <CitySearch updateEvents={this.updateEvents} locations={locations} />
                     <NumberOfEvents numberOfEvents={numberOfEvents} updateEvents={this.updateEvents} />
                     <EventList events={events} />

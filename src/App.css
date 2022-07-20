@@ -2,14 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@700;800;900&family=Mukta:wght@300;400;500&display=swap');
 
 /* App/global */
-.App {
-    padding: 2% 5%;
-    /*background-color: #2C3333;*/
+body {
     background-image: url('../public/background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-position: 75%;
     color: #283618;
+}
+
+.App {
+    padding: 2% 5%;
     display: flex;
     justify-content: right;
     text-align: center;
@@ -23,7 +26,13 @@
 }
 
 .content-container {
-    margin-right: 150px;
+    margin-right: 5%;
+}
+
+.app-header {
+    padding: 20px 50px 1px;
+    margin-bottom: 20px;
+    color: #18210f;
 }
 
 ul {
@@ -35,6 +44,7 @@ h1 {
     font-size: 60px;
     font-family: 'Maven Pro', sans-serif;
     font-weight: 900;
+    margin-top: 0;
 }
 
 h2 {
@@ -62,6 +72,7 @@ p {
 
 .input-label {
     font-size: 18px;
+    color: #18210f;
 }
 
 input[type="text"],
@@ -148,7 +159,7 @@ input[type="number"] {
     border-radius: 16px;
     position: relative;
     max-width: 600px;
-    background-color: #ccd5ae;
+    background-color: #cad6b6;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     transition: all 0.5s;
 }
@@ -195,6 +206,51 @@ input[type="number"] {
 
 /**/
 
+
+/* Responsiveness */
+@media all and (min-width: 2200px) {
+    .content-container {
+        margin-right: 10%;
+    }
+}
+
+@media all and (max-width: 500px) {
+    h1 {
+        font-size: 50px;
+    }
+
+    h2 {
+        font-size: 35px;
+    }
+}
+
+@media all and (max-width: 408px) {
+    h1 {
+        font-size: 34px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 19px;
+    }
+
+    .input-label {
+        font-size: 17px;
+    }
+
+    .event-info {
+        font-size: 16px;
+    }
+
+    .event-details {
+        font-size: 16px;
+    }
+}
+
+/**/
 
 /* UNUSED FOR NOW */
 .name {
