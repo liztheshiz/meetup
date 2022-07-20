@@ -11,24 +11,18 @@ import './nprogress.css';
 
 class App extends React.Component {
     updateEvents = (location, eventCount) => {
+        if (eventCount === undefined) { eventCount = this.state.numberOfEvents }
+        if (location === undefined) { location = this.state.selectedLocation }
+
         getEvents().then((events) => {
-            const locationEvents = (location === 'all') ? events
-                : (location) ? events.filter((event) => event.location === location)
-                    : this.state.events;
-
-            if (eventCount) {
-                this.setState({
-                    numberOfEvents: eventCount
-                });
-            }
-
-            // Truncate events array to length specified in param, or already in state if not given
-            if (eventCount < this.state.numberOfEvents) { locationEvents.length = this.state.numberOfEvents; }
+            let locationEvents = (location === 'all') ? events
+                : events.filter((event) => event.location === location);
 
             this.setState({
-                events: locationEvents
+                events: locationEvents.slice(0, eventCount),
+                numberOfEvents: eventCount,
+                selectedLocation: location
             });
-
         });
     }
 
@@ -37,7 +31,8 @@ class App extends React.Component {
         this.state = {
             events: [],
             locations: [],
-            numberOfEvents: 32
+            numberOfEvents: 32,
+            selectedLocation: 'all'
         }
     }
 
@@ -54,6 +49,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+        this.mounted = true;
         getEvents().then((events) => {
             this.setState({ events, locations: extractLocations(events) });
         });

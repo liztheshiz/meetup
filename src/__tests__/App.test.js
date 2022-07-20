@@ -63,7 +63,7 @@ describe('<App /> integration', () => {
         await CitySearchWrapper.instance().handleItemClicked(selectedCity);
         const allEvents = await getEvents();
         const eventsToShow = allEvents.filter(event => event.location === selectedCity);
-        expect(AppWrapper.state('events')).toEqual(eventsToShow);
+        expect(AppWrapper.state('events')).toEqual(eventsToShow.slice(0, 32));
         AppWrapper.unmount();
     });
 
@@ -72,7 +72,7 @@ describe('<App /> integration', () => {
         const suggestionItems = AppWrapper.find(CitySearch).find('.suggestions li');
         await suggestionItems.at(suggestionItems.length - 1).simulate('click');
         const allEvents = await getEvents();
-        expect(AppWrapper.state('events')).toEqual(allEvents);
+        expect(AppWrapper.state('events')).toEqual(allEvents.slice(0, 32));
         AppWrapper.unmount();
     });
 
