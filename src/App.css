@@ -87,6 +87,20 @@ input[type="number"] {
     height: 38px;
 }
 
+.alert {
+    font-size: 14px;
+    margin: 0 -50px;
+}
+
+.info-alert {
+    position: absolute;
+    bottom: 42px;
+}
+
+.error-alert {
+    margin-bottom: 10px
+}
+
 /**/
 
 /* CitySearch */
@@ -274,11 +288,6 @@ input[type="number"] {
     grid-gap: 20px;
     padding: 20px;
     font-family: sans-serif;
-}
-
-.Alert {
-    position: fixed;
-    top: 20px;
 }
 
 .data-vis-wrapper {
