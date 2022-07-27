@@ -1,11 +1,12 @@
 import React from "react";
+
 import './WelcomeScreen.css';
 
 function WelcomeScreen(props) {
     return props.showWelcomeScreen ?
         (
             <div className="WelcomeScreen">
-                <h1>Welcome to the Meetup app</h1>
+                <h1>Welcome to Meetup</h1>
                 <h4>
                     Log in to see upcoming events for full-stack developers in cities around the world
                 </h4>
