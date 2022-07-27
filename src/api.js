@@ -50,7 +50,7 @@ export const getEvents = async () => {
     // If offline, load data from localStorage
     if (!navigator.onLine) {
         const data = localStorage.getItem("lastEvents");
-        NProgress.done();
+        nProgress.done();
         return data ? JSON.parse(events).events : [];;
     }
 
