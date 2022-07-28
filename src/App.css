@@ -89,16 +89,18 @@ input[type="number"] {
 
 .alert {
     font-size: 14px;
-    margin: 0 -50px;
+    width: 260px;
 }
 
 .info-alert {
     position: absolute;
     bottom: 42px;
+    margin-left: 20px;
 }
 
 .error-alert {
-    margin-bottom: 10px
+    margin-bottom: 10px;
+    margin-left: -30px;
 }
 
 /**/
@@ -261,6 +263,10 @@ input[type="number"] {
 
     .event-details {
         font-size: 16px;
+    }
+
+    .info-alert {
+        margin-left: 20px;
     }
 }
 
