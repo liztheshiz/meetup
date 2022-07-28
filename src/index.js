@@ -5,7 +5,6 @@ import App from './App';
 
 import './index.css';
 
-import * as serviceWorker from './service-worker';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
@@ -28,4 +27,4 @@ serviceWorkerRegistration.unregister();
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-//reportWebVitals(); //this was giving an error that prevented whole app from loading
+reportWebVitals(); //this was giving an error that prevented whole app from loading
