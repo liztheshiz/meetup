@@ -1,5 +1,5 @@
 import axios from 'axios';
-import nProgress from 'nprogress';
+import NProgress from 'nprogress';
 
 import { mockData } from './mock-data';
 
@@ -24,36 +24,21 @@ export const checkToken = async (accessToken) => {
     return result;
 };
 
-// Removes code from url (once we've gotten what we need from it)
-const removeQuery = () => {
-    if (window.history.pushState && window.location.pathname) {
-        var newurl =
-            window.location.protocol +
-            '//' +
-            window.location.host +
-            window.location.pathname;
-        window.history.pushState('', '', newurl);
-    } else {
-        newurl = window.location.protocol + '//' + window.location.host;
-        window.history.pushState('', '', newurl);
-    }
-};
-
 export const getEvents = async () => {
-    nProgress.start();
+    NProgress.start();
 
     if (window.location.href.startsWith('http://localhost')) {
-        nProgress.done();
+        NProgress.done();
         return mockData;
     }
-
-    // If offline, load data from localStorage
-    if (!navigator.onLine) {
-        const data = localStorage.getItem("lastEvents");
-        nProgress.done();
-        return data ? JSON.parse(data).events : [];;
-    }
-
+    /*
+        // If offline, load data from localStorage
+        if (!navigator.onLine) {
+            const data = localStorage.getItem("lastEvents");
+            NProgress.done();
+            return data ? JSON.parse(data).events : [];;
+        }
+    */
     const token = await getAccessToken();
 
     if (token) {
@@ -65,7 +50,7 @@ export const getEvents = async () => {
             localStorage.setItem('lastEvents', JSON.stringify(result.data));
             localStorage.setItem('locations', JSON.stringify(locations));
         }
-        nProgress.done();
+        NProgress.done();
         return result.data.events;
     }
 };
@@ -103,4 +88,19 @@ export const getAccessToken = async () => {
         return code && getToken(code);
     }
     return accessToken;
+};
+
+// Removes code from url (once we've gotten what we need from it)
+const removeQuery = () => {
+    if (window.history.pushState && window.location.pathname) {
+        var newurl =
+            window.location.protocol +
+            '//' +
+            window.location.host +
+            window.location.pathname;
+        window.history.pushState('', '', newurl);
+    } else {
+        newurl = window.location.protocol + '//' + window.location.host;
+        window.history.pushState('', '', newurl);
+    }
 };
