@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 class Event extends Component {
     toggleDetails = () => {
-        this.setState({ show: !this.state.show });
+        let string = this.state.show ? 'View details' : 'Hide details';
+        this.setState({ buttonText: string, show: !this.state.show });
     }
 
     getDate = (string, zone) => {
@@ -15,13 +16,14 @@ class Event extends Component {
     constructor() {
         super();
         this.state = {
-            show: false
+            show: false,
+            buttonText: 'View details'
         }
     }
 
     render() {
         const { event } = this.props;
-        const { show } = this.state;
+        const { show, buttonText } = this.state;
 
         return (
             <div className="event">
@@ -31,7 +33,7 @@ class Event extends Component {
                     <div className="event-info_date">{this.getDate(event.start.dateTime, event.start.timeZone)}</div>
                 </div>
                 {show && <div className="event-details">{event.description}</div>}
-                <button className="details-button" onClick={this.toggleDetails}>View details</button>
+                <button className="details-button" onClick={this.toggleDetails}>{buttonText}</button>
             </div>
         );
     }
