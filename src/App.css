@@ -103,6 +103,13 @@ input[type="number"] {
     margin-left: -30px;
 }
 
+.offline-alert {
+    width: 400px;
+    margin: 0 auto;
+    font-size: 20px;
+    font-weight: 500;
+}
+
 /**/
 
 /* CitySearch */

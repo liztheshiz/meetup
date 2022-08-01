@@ -4,6 +4,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import WelcomeScreen from './WelcomeScreen';
+import { OfflineAlert } from './Alert';
 
 import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
 
@@ -34,18 +35,20 @@ class App extends React.Component {
             locations: [],
             numberOfEvents: 32,
             selectedLocation: 'all',
-            showWelcomeScreen: undefined
+            showWelcomeScreen: undefined,
+            offlineText: ''
         }
     }
 
     render() {
-        const { events, locations, numberOfEvents } = this.state;
+        const { events, locations, numberOfEvents, offlineText } = this.state;
 
         if (this.state.showWelcomeScreen === undefined) return <div className="App" />
 
         return (
             <div className="App">
                 <div className="content-container">
+                    <OfflineAlert text={offlineText} />
                     <div className="app-header">
                         <h1 className="app-title">Welcome to Meetup</h1>
                         <h2 className="app-subtitle">Enter location below: </h2>
@@ -82,6 +85,16 @@ class App extends React.Component {
                 if (this.mounted) {
                     this.setState({ events, locations: extractLocations(events) });
                 }
+            });
+        }
+
+        if (!navigator.onLine) {
+            this.setState({
+                offlineText: "You're offline! Using data from your last visit...",
+            });
+        } else {
+            this.setState({
+                offlineText: '',
             });
         }
     }
