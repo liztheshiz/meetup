@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
-@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@700;800;900&family=Mukta:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;700;800;900&family=Mukta:wght@300;400;500&display=swap');
 
 /* App/global */
 body {
@@ -26,7 +26,7 @@ body {
 }
 
 .content-container {
-    margin-right: 5%;
+    margin-right: 2%;
 }
 
 .app-header {
@@ -89,16 +89,25 @@ input[type="number"] {
 
 .alert {
     font-size: 14px;
-    margin: 0 -50px;
+    width: 260px;
 }
 
 .info-alert {
     position: absolute;
     bottom: 42px;
+    margin-left: 20px;
 }
 
 .error-alert {
-    margin-bottom: 10px
+    margin-bottom: 10px;
+    margin-left: -30px;
+}
+
+.offline-alert {
+    width: 400px;
+    margin: 0 auto;
+    font-size: 20px;
+    font-weight: 500;
 }
 
 /**/
@@ -180,17 +189,26 @@ input[type="number"] {
 
 .event-title {
     text-align: center;
+    margin-bottom: 15px;
 }
 
 .event-info {
-    margin-bottom: 20px;
+    margin-bottom: 26px;
     font-size: 18px;
     font-weight: 500;
+    text-align: center;
+}
+
+.event-info_location {
+    font-family: 'Maven Pro', sans-serif;
+    font-weight: 400;
+    margin-bottom: 10px;
+    font-size: 20px;
 }
 
 .event-details {
     overflow-x: hidden;
-    margin-bottom: 10px;
+    margin-bottom: 26px;
 }
 
 .details-button {
@@ -206,7 +224,7 @@ input[type="number"] {
     color: #e9edc9;
     border: 1px groove #283618;
     font-family: 'Maven Pro', sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 12px;
 }
 
@@ -236,6 +254,11 @@ input[type="number"] {
     h2 {
         font-size: 35px;
     }
+
+    .offline-alert {
+        font-size: 16px;
+        width: 260px;
+    }
 }
 
 @media all and (max-width: 408px) {
@@ -261,6 +284,10 @@ input[type="number"] {
 
     .event-details {
         font-size: 16px;
+    }
+
+    .info-alert {
+        margin-left: 20px;
     }
 }
 

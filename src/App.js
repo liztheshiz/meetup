@@ -4,6 +4,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import WelcomeScreen from './WelcomeScreen';
+import { OfflineAlert } from './Alert';
 
 import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
 
@@ -34,18 +35,20 @@ class App extends React.Component {
             locations: [],
             numberOfEvents: 32,
             selectedLocation: 'all',
-            showWelcomeScreen: undefined
+            showWelcomeScreen: undefined,
+            offlineText: ''
         }
     }
 
     render() {
-        const { events, locations, numberOfEvents } = this.state;
+        const { events, locations, numberOfEvents, offlineText } = this.state;
 
         if (this.state.showWelcomeScreen === undefined) return <div className="App" />
 
         return (
             <div className="App">
                 <div className="content-container">
+                    <OfflineAlert text={offlineText} />
                     <div className="app-header">
                         <h1 className="app-title">Welcome to Meetup</h1>
                         <h2 className="app-subtitle">Enter location below: </h2>
@@ -59,6 +62,8 @@ class App extends React.Component {
         );
     }
 
+    //
+
     /* for crediting background image:
     <a href="https://www.freepik.com/photos/desk-top-view">Desk top view photo created by freepik - www.freepik.com</a>
     */
@@ -66,8 +71,12 @@ class App extends React.Component {
     async componentDidMount() {
         this.mounted = true;
         const accessToken = localStorage.getItem('access_token');
-        const isTokenValid = (await checkToken(accessToken)).error ? false :
-            true;
+        let isTokenValid;
+        if (accessToken && !navigator.onLine) {
+            isTokenValid = true;
+        } else {
+            isTokenValid = (await checkToken(accessToken)).error ? false : true;
+        }
         const searchParams = new URLSearchParams(window.location.search);
         const code = searchParams.get("code");
         this.setState({ showWelcomeScreen: !(code || isTokenValid) });
@@ -76,6 +85,16 @@ class App extends React.Component {
                 if (this.mounted) {
                     this.setState({ events, locations: extractLocations(events) });
                 }
+            });
+        }
+
+        if (!navigator.onLine) {
+            this.setState({
+                offlineText: "You're offline! Using data from your last visit...",
+            });
+        } else {
+            this.setState({
+                offlineText: '',
             });
         }
     }
