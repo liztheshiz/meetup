@@ -1,5 +1,9 @@
 import React from 'react';
 
+import {
+    ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip
+} from 'recharts';
+
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
@@ -28,6 +32,16 @@ class App extends React.Component {
         });
     }
 
+    getData = () => {
+        const { locations, events } = this.state;
+        const data = locations.map((location) => {
+            const number = events.filter((event) => event.location === location).length;
+            const city = location.split(', ').shift();
+            return { city, number };
+        })
+        return data;
+    };
+
     constructor() {
         super();
         this.state = {
@@ -55,14 +69,29 @@ class App extends React.Component {
                     </div>
                     <CitySearch updateEvents={this.updateEvents} locations={locations} />
                     <NumberOfEvents numberOfEvents={numberOfEvents} updateEvents={this.updateEvents} />
+                    <h4>Events in each city</h4>
+
+                    <ScatterChart
+                        width={400}
+                        height={400}
+                        margin={{
+                            top: 20, right: 20, bottom: 20, left: 20,
+                        }}
+                    >
+                        <CartesianGrid />
+                        <XAxis type="number" dataKey="x" name="stature" unit="cm" />
+                        <YAxis type="number" dataKey="y" name="weight" unit="kg" />
+                        <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                        <Scatter data={this.getData()} fill="#8884d8" />
+                    </ScatterChart>
                     <EventList events={events} />
                 </div>
-                <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
+
             </div>
         );
     }
 
-    //
+    //<WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
 
     /* for crediting background image:
     <a href="https://www.freepik.com/photos/desk-top-view">Desk top view photo created by freepik - www.freepik.com</a>
@@ -72,7 +101,10 @@ class App extends React.Component {
         this.mounted = true;
         const accessToken = localStorage.getItem('access_token');
         let isTokenValid;
-        if (accessToken && !navigator.onLine) {
+        const isLocalTesting = window.location.href.startsWith('http://localhost');
+        if (isLocalTesting) { isTokenValid = true }
+        if (isLocalTesting || (accessToken && !navigator.onLine)) {
+            console.log('not online; token valid by default');
             isTokenValid = true;
         } else {
             isTokenValid = (await checkToken(accessToken)).error ? false : true;
