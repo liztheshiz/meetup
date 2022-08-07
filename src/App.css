@@ -113,6 +113,16 @@ input[type="number"] {
 
 /**/
 
+/* Data Visualization */
+.visualized-data {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-evenly;
+
+}
+
+/**/
+
 /* CitySearch */
 .city {
     width: 250px;
@@ -255,6 +265,11 @@ input[type="number"] {
 }
 
 @media all and (max-width: 1200px) {
+    .visualized-data {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
     .event-list {
         grid-template-columns: 1fr 1fr;
     }

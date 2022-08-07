@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-    ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip
+    BarChart, Bar, PieChart, Pie, ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts';
 
 import EventList from './EventList';
@@ -38,8 +38,28 @@ class App extends React.Component {
             const number = events.filter((event) => event.location === location).length;
             const city = location.split(', ').shift();
             return { city, number };
-        })
+        });
         return data;
+    };
+
+    getBarData = () => {
+        const { locations, events } = this.state;
+        const data = locations.map((location) => {
+            const number = events.filter((event) => event.location === location).length;
+            const city = location.split(', ').shift();
+            return { city, number };
+        });
+        return data;
+    }
+
+    getPieData = () => {
+        const { events } = this.state;
+        const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS'];
+        const data = genres.map((genre) => {
+            const value = events.filter((event) => event.summary.includes(genre)).length;
+            return { "name": genre, value };
+        });
+        return data.filter(item => item.value > 0); // filter out genres not in current data set
     };
 
     constructor() {
@@ -69,21 +89,29 @@ class App extends React.Component {
                     </div>
                     <CitySearch updateEvents={this.updateEvents} locations={locations} />
                     <NumberOfEvents numberOfEvents={numberOfEvents} updateEvents={this.updateEvents} />
-                    <h4>Events in each city</h4>
-
-                    <ScatterChart
-                        width={400}
-                        height={400}
-                        margin={{
-                            top: 20, right: 20, bottom: 20, left: 20,
-                        }}
-                    >
-                        <CartesianGrid />
-                        <XAxis type="number" dataKey="x" name="stature" unit="cm" />
-                        <YAxis type="number" dataKey="y" name="weight" unit="kg" />
-                        <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-                        <Scatter data={this.getData()} fill="#8884d8" />
-                    </ScatterChart>
+                    <div className="visualized-data">
+                        <div className="pie-chart">
+                            <h4>Genre distribution</h4>
+                            <ResponsiveContainer height={400} width="99%">
+                                <PieChart>
+                                    <Pie data={this.getPieData()} dataKey="value" cx="50%" cy="50%"
+                                        outerRadius="50%" labelLine={false} fill="#283618"
+                                        label={({ name }) => `${name}`} />
+                                </PieChart>
+                            </ResponsiveContainer>
+                        </div>
+                        <div className="bar-chart">
+                            <h4>Event distribution by city</h4>
+                            <ResponsiveContainer height={400} width="99%">
+                                <BarChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }} data={this.getBarData()}>
+                                    <CartesianGrid strokeDasharray="3 3" />
+                                    <XAxis type="category" name="city" dataKey="city" />
+                                    <Tooltip />
+                                    <Bar dataKey="number" fill="#283618" />
+                                </BarChart>
+                            </ResponsiveContainer>
+                        </div>
+                    </div>
                     <EventList events={events} />
                 </div>
 
