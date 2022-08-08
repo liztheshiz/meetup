@@ -112,6 +112,7 @@ class App extends React.Component {
                             </ResponsiveContainer>
                         </div>
                     </div>
+                    <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
                     <EventList events={events} />
                 </div>
 
@@ -119,7 +120,7 @@ class App extends React.Component {
         );
     }
 
-    //<WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
+    //
 
     /* for crediting background image:
     <a href="https://www.freepik.com/photos/desk-top-view">Desk top view photo created by freepik - www.freepik.com</a>
