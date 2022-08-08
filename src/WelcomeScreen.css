@@ -21,7 +21,7 @@
 }
 
 .button_cont {
-    margin-top: 30px;
+    margin: 50px;
 }
 
 .google-btn {
@@ -69,4 +69,9 @@
     width: 142px;
     height: 100%;
     text-align: center;
+}
+
+.privacy-note {
+    max-width: 600px;
+    margin: 0 auto;
 }

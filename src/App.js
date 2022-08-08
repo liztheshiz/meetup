@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-    BarChart, Bar, PieChart, Pie, XAxis, YAxis, CartesianGrid, LabelList, Tooltip, ResponsiveContainer
+    BarChart, Bar, PieChart, Pie, XAxis, YAxis, Tooltip, ResponsiveContainer
 } from 'recharts';
 
 import EventList from './EventList';
@@ -121,10 +121,6 @@ class App extends React.Component {
     }
 
     //
-
-    /* for crediting background image:
-    <a href="https://www.freepik.com/photos/desk-top-view">Desk top view photo created by freepik - www.freepik.com</a>
-    */
 
     async componentDidMount() {
         this.mounted = true;

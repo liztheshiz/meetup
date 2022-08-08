@@ -7,9 +7,9 @@ function WelcomeScreen(props) {
         (
             <div className="WelcomeScreen">
                 <h1>Welcome to Meetup</h1>
-                <h4>
+                <h3>
                     Log in to see upcoming events for full-stack developers in cities around the world
-                </h4>
+                </h3>
                 <div className="button_cont" align="center">
                     <div class="google-btn">
                         <div class="google-icon-wrapper">
@@ -27,12 +27,17 @@ function WelcomeScreen(props) {
                         </button>
                     </div>
                 </div>
-                <a
-                    href="https://liztheshiz.github.io/meetup/privacy.html"
-                    rel="nofollow noopener"
-                >
-                    Privacy policy
-                </a>
+                <h4>An important note on how this app uses your data:</h4>
+                <p className="privacy-note">It doesn't! Meetup requires you to sign in with Google in order to give YOU access to the app's Google Calendar; that's it.
+                    This also grants the app access to the user's calendar, but Meetup does not and will never access, collect or use the user's data in any way.
+                    Please see the <a
+                        href="https://liztheshiz.github.io/meetup/privacy.html"
+                        rel="nofollow noopener"
+                    >
+                        privacy policy
+                    </a> for a few more details.
+                </p>
+
             </div>
         )
         : null
