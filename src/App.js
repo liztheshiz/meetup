@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-    BarChart, Bar, PieChart, Pie, ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
+    BarChart, Bar, PieChart, Pie, XAxis, YAxis, CartesianGrid, LabelList, Tooltip, ResponsiveContainer
 } from 'recharts';
 
 import EventList from './EventList';
@@ -103,9 +103,9 @@ class App extends React.Component {
                         <div className="bar-chart">
                             <h4>Event distribution by city</h4>
                             <ResponsiveContainer height={400} width="99%">
-                                <BarChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }} data={this.getBarData()}>
-                                    <CartesianGrid strokeDasharray="3 3" />
-                                    <XAxis type="category" name="city" dataKey="city" />
+                                <BarChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }} data={this.getBarData()} layout="vertical" barCategoryGap={3}>
+                                    <XAxis type="number" />
+                                    <YAxis type="category" name="city" dataKey="city" tick={{ fontSize: '13px', fill: "#283618" }} width={100} />
                                     <Tooltip />
                                     <Bar dataKey="number" fill="#283618" />
                                 </BarChart>
@@ -115,7 +115,7 @@ class App extends React.Component {
                     <EventList events={events} />
                 </div>
 
-            </div>
+            </div >
         );
     }
 
